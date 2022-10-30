@@ -1,26 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import TodoList from "./components/TodoList";
+import styled from "styled-components";
+
+//region Style
+const Wrapper = styled.div`
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #121212;
+`;
+
+const Header = styled.h1`
+  color: whitesmoke;
+  font-size: 40px;
+  font-family: 'Fugaz One', cursive;
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 2px gray;
+  margin: 20px;
+
+  @media (min-width: 1200px){
+    font-size: 60px;
+    text-shadow: 5px 5px 2px gray;
+  }
+`;
+//endregion
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Wrapper className="App">
+            <Header>TODOs list</Header>
+            <TodoList/>
+        </Wrapper>
+    );
 }
 
 export default App;
