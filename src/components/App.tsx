@@ -1,6 +1,5 @@
 import React from 'react';
-import './App.css';
-import TodoList from "./components/TodoList";
+import TodoList from "./TodoList/TodoList";
 import styled from "styled-components";
 
 //region Style

@@ -8,9 +8,9 @@ import {
     FaPlus,
     FaMinus
 } from "react-icons/fa";
-import TodoItem from "./TodoItem";
+import TodoItem from "../TodoItem/TodoItem";
 import styled from "styled-components";
-import {Button as Btn} from "./UI";
+import {Button as Btn} from "../UI";
 
 //region Type
 export type TodoItemType = {
@@ -126,6 +126,11 @@ const filtersMap = new Map<Filter, FilterType>([
     [Filter.COMPLETE, (item: TodoItemType) => item.isComplete],
     [Filter.INCOMPLETE, (item: TodoItemType) => !item.isComplete],
 ]);
+
+export const TEST_DATA = {
+    input: "input",
+    inputButton: "inputButton",
+}
 //endregion
 
 /**
@@ -265,8 +270,8 @@ const TodoList = (): JSX.Element => {
         <form onSubmit={(e) => e.preventDefault()} style={{position: "relative"}}>
             <InputFieldset>
                 <Input type="text" value={value} onChange={(e) => setValue(e.target.value)}
-                       placeholder="What needs to be done?"/>
-                <Button onClick={(e) => addItem(value)}><FaPlus/></Button>
+                       placeholder="What needs to be done?" data-testid={TEST_DATA.input}/>
+                <Button onClick={(e) => addItem(value)} data-testid={TEST_DATA.inputButton}><FaPlus/></Button>
             </InputFieldset>
             <ListFieldset>
                 {items && applySorting(applyFilters(items))?.map((item, index) => {

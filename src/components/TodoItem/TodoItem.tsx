@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import {TodoItemType} from "./TodoList";
+import {TodoItemType} from "../TodoList/TodoList";
 import {FaTimes, FaCheck} from "react-icons/fa";
 import styled from "styled-components";
-import {Button as Btn} from "./UI";
+import {Button as Btn} from "../UI";
 
 //region Type
-type TodoItemProps = {
+export type TodoItemProps = {
     item: TodoItemType
     removeFunc: (id: number) => void
     toggleComplete: () => void
@@ -75,6 +75,14 @@ const P = styled.p<StyledProps>`
 `;
 //endregion
 
+//region Data
+export const TEST_DATA = {
+    todoItem: "todoItem",
+    checkButton: "checkButton",
+    removeButton: "removeButton",
+}
+//endregion
+
 /**
  * Component which represents a single todo item in the list
  * @param item - the item of the todo list
@@ -83,10 +91,10 @@ const P = styled.p<StyledProps>`
  */
 const TodoItem = ({item, removeFunc, toggleComplete}: TodoItemProps): JSX.Element => {
     return (
-        <Container onClick={() => toggleComplete()} isComplete={item.isComplete}>
-            <CheckButton style={item.isComplete ? {} : {opacity: 0}}><FaCheck/></CheckButton>
+        <Container onClick={() => toggleComplete()} isComplete={item.isComplete} data-testid={TEST_DATA.todoItem}>
+            <CheckButton style={item.isComplete ? {} : {opacity: 0}} data-testid={TEST_DATA.checkButton}><FaCheck/></CheckButton>
             <P isComplete={item.isComplete}>{item.text}</P>
-            <Button onClick={(e) => removeFunc(item.id)}><FaTimes/></Button>
+            <Button onClick={(e) => removeFunc(item.id)} data-testid={TEST_DATA.removeButton}><FaTimes/></Button>
         </Container>
     );
 };
